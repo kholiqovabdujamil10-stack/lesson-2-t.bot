@@ -81,7 +81,7 @@ async def create_task_handler(message: Message, state: FSMContext):
 async def create_task_finish(message: Message, state: FSMContext):
     title = (message.text or "").strip()
     if not title:
-        await message.answer("Название не должно быть пустым 😅")
+        await message.answer("Название не должно быть пустым")
         return
     if len(title) > 200:
         await message.answer("Максимум 200 символов.")
@@ -91,7 +91,7 @@ async def create_task_finish(message: Message, state: FSMContext):
     if status:
         await message.answer("✅ Задача создана!")
     else:
-        await message.answer("Не получилось создать задачу 😭")
+        await message.answer("Не получилось создать задачу")
 
 
 
@@ -129,7 +129,7 @@ async def update_task_id(message: Message, state: FSMContext):
         return
     task = await get_task(task_id, message.from_user.id)
     if not task:
-        await message.answer("Задача не найдена 😭")
+        await message.answer("Задача не найдена")
         return
     await state.update_data(task_id=task_id)
     await state.set_state(TaskStates.waiting_update)
@@ -140,7 +140,7 @@ async def update_task_id(message: Message, state: FSMContext):
 async def update_task_finish(message: Message, state: FSMContext):
     title = (message.text or "").strip()
     if not title:
-        await message.answer("Название не должно быть пустым 😅")
+        await message.answer("Название не должно быть пустым")
         return
     if len(title) > 200:
         await message.answer("Максимум 200 символов.")
@@ -151,7 +151,7 @@ async def update_task_finish(message: Message, state: FSMContext):
     if status:
         await message.answer("✅ Задача обновлена!")
     else:
-        await message.answer("Не получилось изменить задачу 😭")
+        await message.answer("Не получилось изменить задачу")
 
 
 
